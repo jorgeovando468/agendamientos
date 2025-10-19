@@ -11,9 +11,9 @@ services:
     volumes:
       - dbdata:/var/lib/postgresql/data
   backend:
-    build: ..
-    context: ..
-    dockerfile: docker/Dockerfile
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
     env_file:
       - ../.env
     environment:

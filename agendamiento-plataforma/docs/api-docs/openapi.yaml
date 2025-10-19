@@ -1,0 +1,64 @@
+openapi: 3.0.3
+authors:
+  - name: Plataforma Agendamiento
+info:
+  title: API Agendamiento
+  version: 0.1.0
+servers:
+  - url: http://localhost:4000
+paths:
+  /api/health:
+    get:
+      summary: Health check
+      responses:
+        '200': { description: OK }
+  /api/appointments:
+    get:
+      summary: Listar citas
+      parameters:
+        - in: query
+          name: ownerId
+          schema: { type: integer }
+      responses:
+        '200': { description: OK }
+    post:
+      summary: Crear cita
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [customerName, customerPhone, startTime, endTime]
+              properties:
+                ownerId: { type: integer }
+                customerName: { type: string }
+                customerPhone: { type: string }
+                startTime: { type: string, format: date-time }
+                endTime: { type: string, format: date-time }
+                notes: { type: string }
+      responses:
+        '201': { description: Creado }
+        '409': { description: Conflicto (solapamiento) }
+  /api/appointments/{id}:
+    delete:
+      summary: Eliminar cita
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: integer }
+      responses:
+        '200': { description: Eliminado }
+  /api/appointments/availability:
+    get:
+      summary: Disponibilidad del día
+      parameters:
+        - in: query
+          name: ownerId
+          schema: { type: integer }
+        - in: query
+          name: date
+          schema: { type: string, format: date-time }
+      responses:
+        '200': { description: OK }
