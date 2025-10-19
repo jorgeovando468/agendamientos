@@ -1,0 +1,19 @@
+{
+  "name": "agendamiento-plataforma",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": [
+    "src/backend",
+    "src/frontend"
+  ],
+  "scripts": {
+    "dev:backend": "npm --workspace src/backend run dev",
+    "dev:frontend": "npm --workspace src/frontend run dev",
+    "build:backend": "npm --workspace src/backend run build",
+    "build:frontend": "npm --workspace src/frontend run build",
+    "db:sync": "npm --workspace src/backend run db:sync",
+    "test": "npm -ws run test",
+    "docker:up": "docker compose -f docker/docker-compose.yml up --build",
+    "docker:down": "docker compose -f docker/docker-compose.yml down"
+  }
+}

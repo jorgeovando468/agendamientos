@@ -1,0 +1,5 @@
+version: "3.9"
+services:
+  # Empty compose placeholder (Docker not required with XAMPP)
+  placeholder:
+    image: hello-world
