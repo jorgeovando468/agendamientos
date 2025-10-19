@@ -6,6 +6,7 @@ info:
   version: 0.1.0
 servers:
   - url: http://localhost:4000
+    description: Backend Express (MySQL XAMPP o SQLite)
 paths:
   /api/health:
     get:

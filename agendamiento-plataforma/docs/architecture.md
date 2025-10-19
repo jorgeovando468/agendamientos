@@ -1,9 +1,9 @@
 # Arquitectura
 
-- Backend: API REST en Express, con Sequelize a PostgreSQL.
+- Backend: API REST en Express, con Sequelize a MySQL (XAMPP) o SQLite.
 - Frontend: React (Vite) consumiendo la API del backend.
 - Servicios externos: WhatsApp Cloud API para envío de mensajes.
-- Docker Compose: orquesta PostgreSQL y el backend en desarrollo.
+- Docker Compose: opcional para backend; la BD preferida es MySQL local (XAMPP).
 
 ## Flujo básico
 1. Cliente consulta disponibilidad (`GET /api/availability`).

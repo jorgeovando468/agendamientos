@@ -6,4 +6,4 @@ set -euo pipefail
 ENVIRONMENT=${1:-dev}
 
 echo "Deploying backend to $ENVIRONMENT..."
-# Add real deploy commands here (e.g., Docker push, k8s apply)
+echo "Note: This project targets XAMPP/MySQL for DB in dev."

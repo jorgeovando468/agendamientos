@@ -1,29 +1,5 @@
 version: "3.9"
 services:
-  db:
-    image: postgres:15
-    environment:
-      POSTGRES_USER: ${DB_USER:-postgres}
-      POSTGRES_PASSWORD: ${DB_PASSWORD:-postgres}
-      POSTGRES_DB: ${DB_NAME:-agendamiento}
-    ports:
-      - "5432:5432"
-    volumes:
-      - dbdata:/var/lib/postgresql/data
-  backend:
-    build:
-      context: ..
-      dockerfile: docker/Dockerfile
-    env_file:
-      - ../.env
-    environment:
-      DB_HOST: db
-      DB_PORT: 5432
-    ports:
-      - "4000:4000"
-    depends_on:
-      db:
-        condition: service_started
-    command: sh -c "npm install && npm run db:sync && npm run start"
-volumes:
-  dbdata:
+  # Empty compose placeholder (Docker not required with XAMPP)
+  placeholder:
+    image: hello-world

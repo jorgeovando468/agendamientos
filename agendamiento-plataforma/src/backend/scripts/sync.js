@@ -4,6 +4,7 @@ const path = require('path');
 require('dotenv').config({ path: path.join(__dirname, '../../../.env') });
 
 const { sequelize, User } = require('../models');
+const mysql = require('mysql2/promise');
 
 function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
 
@@ -23,6 +24,14 @@ async function ensureConnectionWithRetry(maxRetries = 20) {
 }
 
 async function main() {
+  // When using MySQL, ensure database exists first
+  if (String(process.env.DB_DIALECT).toLowerCase() === 'mysql') {
+    const { DB_HOST='127.0.0.1', DB_PORT='3306', DB_USER='root', DB_PASSWORD='', DB_NAME='agendamiento' } = process.env;
+    const conn = await mysql.createConnection({ host: DB_HOST, port: Number(DB_PORT), user: DB_USER, password: DB_PASSWORD });
+    await conn.query(`CREATE DATABASE IF NOT EXISTS \`${DB_NAME}\` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;`);
+    await conn.end();
+  }
+
   await ensureConnectionWithRetry();
   await sequelize.sync();
 

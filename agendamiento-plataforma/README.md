@@ -14,7 +14,7 @@ npm install
 ```
 
 ## Desarrollo
-- Backend: Express + Sequelize (PostgreSQL)
+- Backend: Express + Sequelize (MySQL con XAMPP o SQLite fallback)
 - Frontend: React + Vite
 
 ### Scripts comunes
@@ -35,11 +35,13 @@ Consulte la carpeta `docs/` y el árbol de directorios en este README.
 ## Variables de entorno
 Ver `.env.example`.
 
-## Docker
-```bash
-npm run docker:up   # inicia db + backend
-npm run docker:down # detiene servicios
-```
+## MySQL con XAMPP
+1. Inicia MySQL en XAMPP.
+2. Crea la base `agendamiento` (o ajusta `DB_NAME`).
+3. Configura `.env` con `DB_DIALECT=mysql`, `DB_HOST=127.0.0.1`, `DB_PORT=3306`, `DB_USER=root`, `DB_PASSWORD` si aplica.
+4. Ejecuta `npm run db:sync` para crear tablas.
+
+Si prefieres SQLite (sin MySQL), usa `DB_DIALECT=sqlite` en `.env` y vuelve a correr `npm run db:sync`.
 
 ## Notas
 - La integración de WhatsApp utiliza la API Cloud de Meta. Configure `WHATSAPP_TOKEN` y `WHATSAPP_PHONE_NUMBER_ID`.
