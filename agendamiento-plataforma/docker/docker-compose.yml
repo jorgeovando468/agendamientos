@@ -22,6 +22,8 @@ services:
     ports:
       - "4000:4000"
     depends_on:
-      - db
+      db:
+        condition: service_started
+    command: sh -c "npm install && npm run db:sync && npm run start"
 volumes:
   dbdata:
